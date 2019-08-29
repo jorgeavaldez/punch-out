@@ -65,7 +65,7 @@ const PunchForm = (props) => {
     }
 
     navigation.navigate('/');
-  }, [punchId, removePunch]);
+  }, [punchId, removePunch, navigation]);
 
   /*
   const formatString = 'cccc hh:mm:ss ';

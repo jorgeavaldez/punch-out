@@ -1,12 +1,9 @@
-import React, {
-  useCallback,
-} from 'react';
+import React from 'react';
 import {
   route,
 } from 'navi';
 import {
   useCurrentRoute,
-  useNavigation,
 } from 'react-navi';
 
 import PunchForm from '../components/punch-form';
