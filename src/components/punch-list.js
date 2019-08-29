@@ -8,9 +8,8 @@ import Punch from '../components/punch';
 const PunchList = ({ punches, children }) => {
   const navigation = useNavigation();
 
-  const onPunchClick = useCallback(() => (id) => (evt) => {
-    evt.preventDefault();
-    navigation.navigate(`/task/edit/${id}`);
+  const clickHandler = useCallback((id) => {
+    navigation.navigate(`/punch/edit/${id}`);
   }, [navigation]);
 
   return (
@@ -19,7 +18,7 @@ const PunchList = ({ punches, children }) => {
         key={i}
         punchId={i}
         punch={punch}
-        onClick={onPunchClick(i)}
+        onClick={clickHandler}
         button={children}
       />
     ))
