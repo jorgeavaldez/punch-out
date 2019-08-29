@@ -17,8 +17,6 @@ const cleanPunch = (p) => {
   }
 
   catch {
-    console.log('wtf?')
-    console.dir(p);
     cleanPunch = p;
   }
 
@@ -39,13 +37,11 @@ const Punch = ({
   const cleanPunchIn = cleanPunch(punchIn);
   const cleanPunchOut = punchOut && cleanPunch(punchOut);
 
-  console.dir(cleanPunchOut);
-
   return (
     <div className="row" onClick={onClick && onClick(punchId)}>
       <h2>{title}</h2>
       <h4>Clock In: {`${cleanPunchIn}`}</h4>
-      <h4>Clock Out: {punchOut ? cleanPunchOut : 'Ongoing'}</h4>
+      <h4>Clock Out: {punchOut ? `${cleanPunchOut}` : 'Ongoing'}</h4>
       <p>{note}</p>
       { children }
     </div>

@@ -7,7 +7,7 @@ import {
   useNavigation,
 } from 'react-navi';
 
-import { format, parseISO } from 'date-fns';
+import cleanPunch from '../cleanPunch';
 
 const PunchForm = (props) => {
   const {
@@ -63,6 +63,8 @@ const PunchForm = (props) => {
     if (removePunch) {
       removePunch(punchId);
     }
+
+    navigation.navigate('/');
   }, [punchId, removePunch]);
 
   /*
@@ -75,9 +77,9 @@ const PunchForm = (props) => {
         {
           (defaults && defaults.punchIn) ? (
             <>
-              <h4>Punched in at {format(parseISO(defaults.punchIn), 'PPPPpppp')}</h4>
+              <h4>Punched in at {cleanPunch(defaults.punchIn)}</h4>
               <label>Edit in time</label>
-              <input name="punchIn" type="time" step="1" defaultValue={format(parseISO(defaults.punchIn), 'hh:mm:ss')} />
+              <input name="punchIn" type="time" step="1" defaultValue={cleanPunch(defaults.punchIn)} />
             </>
           ) : null
         }
@@ -94,9 +96,9 @@ const PunchForm = (props) => {
         {
           (defaults && defaults.punchOut) ? (
             <>
-              <h4>Punched out at {format(parseISO(defaults.punchIn), 'hh:mm:ss')}</h4>
+              <h4>Punched out at {cleanPunch(defaults.punchIn)}</h4>
               <label>Edit out time</label>
-              <input name="punchOut" type="time" step="1" defaultValue={format(parseISO(defaults.punchOut), 'hh:mm:ss')} />
+              <input name="punchOut" type="time" step="1" defaultValue={cleanPunch(defaults.punchOut)} />
             </>
           ) : null
         }

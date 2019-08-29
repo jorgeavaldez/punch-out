@@ -5,6 +5,7 @@ import {
 import {
   Router,
   View,
+  Link,
 } from 'react-navi';
 
 import usePO from './state/';
@@ -32,9 +33,15 @@ const App = () => {
       context={{ state, actions }}
       routes={routes}
     >
+    <div className='hero'>
       <Suspense fallback={null}>
+        <Link href="/">
+          <h1>Punch Out!!!</h1>
+        </Link>
+
         <View />
       </Suspense>
+    </div>
     </Router>
   );
 }

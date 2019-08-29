@@ -21,10 +21,6 @@ const Edit = (props) => {
 
   return (
     <div>
-      <div className='hero'>
-        <h1 className='title'>Punch Out!!!</h1>
-      </div>
-
       <PunchForm
         onSubmit={actions.editPunch}
         punchOut={actions.punchOut}

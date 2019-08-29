@@ -27,12 +27,7 @@ const Home = (props) => {
 
   return (
     <div>
-      <div className='hero'>
-        <h1 className='title'>Punch Out!!!</h1>
-
-        <button type="submit" onClick={addPunch}>NEW PUNCH</button>
-      </div>
-
+      <button type="submit" onClick={addPunch}>NEW PUNCH</button>
       <PunchList punches={state.punches} />
     </div>
   );
