@@ -23,7 +23,7 @@ const Home = (props) => {
   const addPunch = useCallback((evt) => {
     evt.preventDefault();
     navigation.navigate('/punch/add');
-  });
+  },[navigation]);
 
   return (
     <div>

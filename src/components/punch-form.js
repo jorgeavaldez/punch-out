@@ -65,7 +65,9 @@ const PunchForm = (props) => {
     }
   }, [punchId, removePunch]);
 
+  /*
   const formatString = 'cccc hh:mm:ss ';
+  */
 
   return (
     <div className="row">
