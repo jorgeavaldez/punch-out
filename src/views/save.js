@@ -30,7 +30,7 @@ const JsonView = (props) => {
       const file = new Blob([serialized], { type: 'application/json' });
 
       anchorRef.current.href = URL.createObjectURL(file);
-      anchorRef.current.download = `${getUnixTime}_po_state.json`;
+      anchorRef.current.download = `${getUnixTime(new Date())}_po_state.json`;
 
       anchorRef.current.click();
       navigation.navigate('/');

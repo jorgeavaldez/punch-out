@@ -1,6 +1,6 @@
 import { parseISO, format } from 'date-fns';
 
-const cleanPunch = (p) => {
+const cleanPunch = (p, onlyTime = false) => {
   let cleanPunch = p;
 
   try {
@@ -11,14 +11,24 @@ const cleanPunch = (p) => {
     cleanPunch = p;
   }
 
-  try {
-    cleanPunch = format(cleanPunch, 'PPpp');
+  if (onlyTime) {
+    try {
+      cleanPunch = format(cleanPunch, 'HH:mm');
+    }
+
+    catch {
+      cleanPunch = p;
+    }
   }
 
-  catch {
-    console.log('wtf?');
-    console.dir(p);
-    cleanPunch = p;
+  else {
+    try {
+      cleanPunch = format(cleanPunch, 'PPpp');
+    }
+
+    catch {
+      cleanPunch = p;
+    }
   }
 
   return cleanPunch;

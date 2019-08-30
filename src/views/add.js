@@ -16,9 +16,7 @@ const Add = (props) => {
   } = useCurrentRoute();
 
   return (
-    <div>
-      <PunchForm onSubmit={actions.addPunch} />
-    </div>
+    <PunchForm onSubmit={actions.addPunch} />
   );
 }
 

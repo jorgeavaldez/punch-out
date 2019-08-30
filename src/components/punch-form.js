@@ -7,6 +7,20 @@ import {
   useNavigation,
 } from 'react-navi';
 
+import {
+  Box,
+  Button,
+  Heading,
+  Text,
+  Flex,
+} from 'rebass';
+
+import {
+  Label,
+  Input,
+  Textarea
+} from '@rebass/forms';
+
 import cleanPunch from '../cleanPunch';
 
 const PunchForm = (props) => {
@@ -44,9 +58,11 @@ const PunchForm = (props) => {
 
     else {
       parentSubmit(newPunch);
-    }
 
-    navigation.navigate('/');
+      if (navigation) {
+        navigation.navigate('/');
+      }
+    }
   }, [parentSubmit, formRef, defaults, punchId, navigation]);
 
   const onPunch = useCallback((evt) => {
@@ -72,48 +88,61 @@ const PunchForm = (props) => {
   */
 
   return (
-    <div className="row">
-      <form ref={formRef} onSubmit={onSubmit}>
-        {
-          (defaults && defaults.punchIn) ? (
-            <>
-              <h4>Punched in at {cleanPunch(defaults.punchIn)}</h4>
-              <label>Edit in time</label>
-              <input name="punchIn" type="time" step="1" defaultValue={cleanPunch(defaults.punchIn)} />
-            </>
-          ) : null
-        }
+    <Box as="form" ref={formRef} onSubmit={onSubmit}>
 
-        {
-          (defaults && defaults.punchIn && !defaults.punchOut) ? (
-            <>
-              <h4>Ongoing</h4>
-              <button type="submit" onClick={onPunch}>Punch Out!!!</button>
-            </>
-          ) : null
-        }
+    <Flex mb={4} flexWrap="wrap">
+    {
+      (defaults && defaults.punchIn) ? (
+        <Box width={[1, 1/2, 1/2]}>
+          <Heading fontSize={[ 3, 4, 5 ]} mt={4} fontWeight="bold">In at</Heading>
+          <Flex my={3}>
+            <Text fontSize={[ 3, 4, 5 ]} my="auto" mr={3}>{`${cleanPunch(defaults.punchIn)}`}</Text>
 
-        {
-          (defaults && defaults.punchOut) ? (
-            <>
-              <h4>Punched out at {cleanPunch(defaults.punchIn)}</h4>
-              <label>Edit out time</label>
-              <input name="punchOut" type="time" step="1" defaultValue={cleanPunch(defaults.punchOut)} />
-            </>
-          ) : null
-        }
+            <Box>
+              <Input my="auto" name="punchIn" type="time" step="1" defaultValue={cleanPunch(defaults.punchIn, true)} />
+            </Box>
+          </Flex>
+        </Box>
+      ) : null
+    }
 
-        <label>Title</label>
-        <input name="title" type="text" defaultValue={(defaults && defaults.details.title) ? defaults.details.title : ''} />
+    {
+      (defaults && defaults.punchIn && !defaults.punchOut) ? (
+        <Box width={[1, 1/2, 1/2]}>
+          <Heading fontSize={[ 3, 4, 5 ]} mt={4} fontWeight="bold">Ongoing</Heading>
+          <Button my={3} type="submit" sx={{ '&:hover': { bg: 'secondary', color: 'white' }, cursor: 'pointer' }} onClick={onPunch}>Punch Out!</Button>
+        </Box>
+      ) : null
+    }
 
-        <label>Note</label>
-        <textarea name="note" type="text" defaultValue={(defaults && defaults.details.note) ? defaults.details.note : ''} />
+    {
+      (defaults && defaults.punchOut) ? (
+        <Box width={[1, 1/2, 1/2]}>
+          <Heading fontSize={[ 3, 4, 5 ]} mt={4} fontWeight="bold">Out at</Heading>
+          <Flex my={3}>
+            <Text fontSize={[ 3, 4, 5 ]} my="auto" mr={3}>{`${cleanPunch(defaults.punchOut)}`}</Text>
 
-        <button type="submit">Punch!!!</button>
+            <Box>
+              <Input my="auto" name="punchOut" type="time" step="1" defaultValue={cleanPunch(defaults.punchOut, true)} />
+            </Box>
+          </Flex>
+        </Box>
+      ) : null
+    }
+    </Flex>
 
-        <button type="submit" onClick={onDelete}>xxx DELETE xxx</button>
-      </form>
-    </div>
+      <Button type="submit" my={4} variant="outline" sx={{ '&:hover': { bg: 'highlight', color: 'white' }, cursor: 'pointer' }} display="block" onClick={onDelete}>DELETE</Button>
+
+      <Label>Title</Label>
+      <Input mb={3} name="title" type="text" defaultValue={(defaults && defaults.details.title) ? defaults.details.title : ''} />
+
+      <Label>Note</Label>
+      <Textarea mb={3} name="note" type="text" defaultValue={(defaults && defaults.details.note) ? defaults.details.note : ''} />
+
+      <Flex justifyContent="flex-end">
+        <Button type="submit" my={2} display="block" variant="primary" sx={{ '&:hover': { bg: 'secondary', color: 'white' }, cursor: 'pointer' }}>Punch!!!</Button>
+      </Flex>
+    </Box>
   );
 };
 

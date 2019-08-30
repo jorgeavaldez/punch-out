@@ -20,15 +20,13 @@ const Edit = (props) => {
   const currentPunch = state.punches[id];
 
   return (
-    <div>
-      <PunchForm
-        onSubmit={actions.editPunch}
-        punchOut={actions.punchOut}
-        punchId={id}
-        defaults={currentPunch}
-        removePunch={actions.removePunch}
-      />
-    </div>
+    <PunchForm
+      onSubmit={actions.editPunch}
+      punchOut={actions.punchOut}
+      punchId={id}
+      defaults={currentPunch}
+      removePunch={actions.removePunch}
+    />
   );
 }
 
