@@ -1,24 +1,34 @@
-import React, { Suspense } from 'react';
+import React, {
+  Suspense,
+} from 'react';
+
 import {
+  redirect,
   mount,
 } from 'navi';
+
 import {
   Router,
   View,
-  Link,
 } from 'react-navi';
 
+import { ThemeProvider } from 'emotion-theming';
+import theme from '@rebass/preset-material';
+
 import usePO from './state/';
+
+import Layout from './components/layout';
 
 import HomeView from './views';
 import AddView from './views/add';
 import EditView from './views/edit';
-import JsonView from './views/json';
+import SaveView from './views/save';
 
 const routes = mount({
   '/': HomeView,
-  '/save': JsonView,
+  '/save': SaveView,
   '/punch': mount({
+    '/': redirect({ pathname: '/', href: '/' }),
     '/add': AddView,
     '/edit/:id': EditView,
   }),
@@ -31,22 +41,17 @@ const App = () => {
   } = usePO();
 
   return (
+    <ThemeProvider theme={theme}>
     <Router
-      context={{ state, actions }}
-      routes={routes}
-    >
-    <div className='hero'>
+    context={{ state, actions }}
+    routes={routes}>
+    <Layout>
       <Suspense fallback={null}>
-        <Link href="/">
-          <h1>Punch Out!!!</h1>
-        </Link>
-
-        <button type="submit"><Link href="/save">Save State</Link></button>
-
         <View />
       </Suspense>
-    </div>
-    </Router>
+    </Layout>
+      </Router>
+    </ThemeProvider>
   );
 }
 

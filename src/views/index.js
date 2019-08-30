@@ -9,7 +9,22 @@ import {
   useNavigation,
 } from 'react-navi';
 
+import {
+  Box,
+  Button,
+} from 'rebass';
+
 import PunchList from '../components/punch-list';
+
+const SaveButtonStyles = {
+  cursor: 'pointer',
+  '&:hover': {
+    bg: 'highlight',
+    color: 'white',
+    border: 'none',
+  },
+  mb: 3,
+};
 
 const Home = (props) => {
   const {
@@ -26,10 +41,10 @@ const Home = (props) => {
   },[navigation]);
 
   return (
-    <div>
-      <button type="submit" onClick={addPunch}>NEW PUNCH</button>
+    <Box>
+      <Button sx={SaveButtonStyles} variant="outline" type="submit" onClick={addPunch}>NEW PUNCH</Button>
       <PunchList punches={state.punches} />
-    </div>
+    </Box>
   );
 }
 

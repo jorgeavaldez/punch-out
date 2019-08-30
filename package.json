@@ -3,12 +3,17 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@rebass/forms": "^4.0.5",
+    "@rebass/preset": "^4.0.5",
+    "@rebass/preset-material": "^4.0.5",
     "date-fns": "^2.0.1",
+    "emotion-theming": "^10.0.14",
     "navi": "^0.13.6",
     "react": "^16.9.0",
     "react-dom": "^16.9.0",
     "react-navi": "^0.13.6",
-    "react-scripts": "3.1.1"
+    "react-scripts": "3.1.1",
+    "rebass": "^4.0.5"
   },
   "scripts": {
     "start": "react-scripts start",
